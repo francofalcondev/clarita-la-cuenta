@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { RootStackParamList } from "./types";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Onboarding } from "@/screens";
+import { Onboarding, Home } from "@/screens";
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const NavigationWrapper = () => {
@@ -11,6 +11,11 @@ export const NavigationWrapper = () => {
         <Stack.Screen
           name="Onboarding"
           component={Onboarding}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
