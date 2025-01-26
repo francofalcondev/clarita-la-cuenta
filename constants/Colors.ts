@@ -8,6 +8,7 @@ export const Colors = {
   paleSilver: "#f5f7f9",
   white: "#FFFFFF",
   yellowGreen: "#57a639",
+  grayLight: "F9F9F9",
   grayText: "#84868A",
   yellowAvatar: "#FFC73F",
   blackText: "#00000",

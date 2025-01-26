@@ -3,7 +3,7 @@ import { AvatarGroupProps } from "./types";
 import { styles } from "./styles";
 
 export const AvatarGroup = ({ avatarUrls }: AvatarGroupProps) => {
-  const avatarSize = 48;
+  const avatarSize = 43;
 
   return (
     <View style={styles.avatarWrapper}>
