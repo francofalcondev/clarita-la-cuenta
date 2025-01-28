@@ -12,4 +12,5 @@ export const Colors = {
   grayText: "#84868A",
   yellowAvatar: "#FFC73F",
   blackText: "#00000",
+  softSlate: "#e1e5e9",
 };
