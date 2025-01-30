@@ -9,4 +9,9 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 20,
   },
+
+  separator: {
+    height: 1,
+    marginVertical: 13,
+  },
 });

@@ -1,11 +1,14 @@
 import { registerRootComponent } from "expo";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationWrapper } from "@/navigation";
+import { BillProvider } from "./context";
 
 function App() {
   return (
     <SafeAreaProvider>
-      <NavigationWrapper />
+      <BillProvider>
+        <NavigationWrapper />
+      </BillProvider>
     </SafeAreaProvider>
   );
 }
