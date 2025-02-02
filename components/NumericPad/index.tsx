@@ -1,11 +1,8 @@
-import { useState } from "react";
 import { styles } from "./styles";
 import { View, Text, TouchableOpacity } from "react-native";
 import { NumericPadProps } from "./types";
 import DeleteIcon from "@/assets/icons/DeleteIcon";
-export const NumericPad = ({ onChange }: NumericPadProps) => {
-  const [value, setValue] = useState<string>("");
-
+export const NumericPad = ({ onChange, value }: NumericPadProps) => {
   const handlePress = (key: string) => {
     let newValue = value;
 
@@ -17,7 +14,6 @@ export const NumericPad = ({ onChange }: NumericPadProps) => {
       newValue = value + key;
     }
 
-    setValue(newValue);
     onChange?.(newValue);
   };
 
@@ -25,7 +21,7 @@ export const NumericPad = ({ onChange }: NumericPadProps) => {
     ["1", "2", "3"],
     ["4", "5", "6"],
     ["7", "8", "9"],
-    [".", "0", "DEL"], // 🔹 Incluye punto, 0 y borrar
+    [".", "0", "DEL"],
   ];
   return (
     <View style={styles.container}>
@@ -38,9 +34,11 @@ export const NumericPad = ({ onChange }: NumericPadProps) => {
                 style={[styles.button]}
                 onPress={() => handlePress(key)}
               >
-                <Text style={styles.buttonText}>
-                  {key === "DEL" ? <DeleteIcon color="black" /> : key}
-                </Text>
+                {key === "DEL" ? (
+                  <DeleteIcon color="black" />
+                ) : (
+                  <Text style={styles.buttonText}>{key}</Text>
+                )}
               </TouchableOpacity>
             ))}
           </View>

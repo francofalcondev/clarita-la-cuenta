@@ -14,7 +14,7 @@ export const FriendsList = () => {
   };
 
   const { bills } = useBillContext();
-  const participants = bills.length > 0 ? bills[0].participant : [];
+  const participants = bills.length > 0 ? bills[0].participants : [];
   return (
     <View style={styles.friendsContainer}>
       <FlatList

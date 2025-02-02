@@ -32,7 +32,7 @@ export const avatarWithColors = [
     avatar: require("@/assets/images/avatars/avatar-eight.png"),
   },
   {
-    color: "#c1ff72",
+    color: "#00bf63",
     avatar: require("@/assets/images/avatars/avatar-nine.png"),
   },
   {

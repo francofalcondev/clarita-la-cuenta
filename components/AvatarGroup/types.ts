@@ -1,3 +1,5 @@
+import { ImageURISource } from "react-native";
+
 export interface AvatarGroupProps {
-  avatarUrls: string[];
+  avatarUrls: ImageURISource[];
 }
