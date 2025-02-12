@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
     bottom: -8,
     left: 0,
     right: 0,
-    height: 16,
+    height: 15,
     zIndex: 9999,
   },
 });

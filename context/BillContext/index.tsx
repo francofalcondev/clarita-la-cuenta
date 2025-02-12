@@ -2,7 +2,8 @@ import { createContext, useContext, useState } from "react";
 import { Bill, BillContextType, BillProviderProps, Participant } from "./types";
 import { parsedDate } from "@/utils/dateHelpers";
 import uuid from "react-native-uuid";
-import { ImageSourcePropType } from "react-native";
+
+import { avatarWithColors } from "@/constants/avatarWithColors";
 
 const initialState = {
   bills: [],
@@ -13,10 +14,10 @@ const BillContext = createContext<BillContextType>(initialState);
 
 const billMock: Bill[] = [
   {
-    id: "124-s",
+    id: "124ss",
     title: "Burguer Queen",
     createdAt: parsedDate,
-    amount: 150.0,
+    amount: 15000,
     participants: [],
   },
 ];
@@ -36,27 +37,34 @@ export const BillProvider = ({ children }: BillProviderProps) => {
     setBills([...bills, newBill]);
   };
 
-  const addParticipant = (
-    billId: string,
-    name: string,
-    payment: number,
-    avatar: ImageSourcePropType,
-    color: string,
-  ) => {
-    const newParticipant: Participant = {
-      id: uuid.v4(),
-      name: name,
-      avatar: avatar,
-      color: color,
-      payment: payment,
-    };
-
+  const addParticipant = (billId: string, name: string, payment: number) => {
     setBills((prevBills) =>
-      prevBills.map((bill) =>
-        bill.id === billId
-          ? { ...bill, participants: [...bill.participants, newParticipant] }
-          : bill,
-      ),
+      prevBills.map((bill) => {
+        if (bill.id === billId) {
+          // Obtener el índice del próximo avatar
+          const index = bill.participants.length;
+
+          // Verificar que el índice esté dentro del rango del array
+          const avatarConfig =
+            avatarWithColors[index % avatarWithColors.length];
+
+          // Crear el nuevo participante
+          const newParticipant = {
+            id: uuid.v4(),
+            name,
+            avatar: avatarConfig.avatar,
+            color: avatarConfig.color,
+            payment,
+          };
+
+          // Retornar la factura actualizada con el nuevo participante
+          return {
+            ...bill,
+            participants: [...bill.participants, newParticipant],
+          };
+        }
+        return bill;
+      }),
     );
   };
 

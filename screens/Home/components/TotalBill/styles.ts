@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
   },
 
   amount: {
+    marginTop: 7,
     fontSize: 23,
     fontWeight: 800,
   },

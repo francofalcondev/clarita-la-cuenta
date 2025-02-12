@@ -1,42 +1,60 @@
-export const avatarWithColors = [
+import { ImageSourcePropType } from "react-native";
+
+import AvatarOne from "@/assets/images/avatars/avatar-one.png";
+import AvatarTwo from "@/assets/images/avatars/avatar-two.png";
+import AvatarThree from "@/assets/images/avatars/avatar-three.png";
+import AvatarFour from "@/assets/images/avatars/avatar-four.png";
+import AvatarFive from "@/assets/images/avatars/avatar-five.png";
+import AvatarSix from "@/assets/images/avatars/avatar-six.png";
+import AvatarSeven from "@/assets/images/avatars/avatar-seven.png";
+import AvatarEight from "@/assets/images/avatars/avatar-eight.png";
+import AvatarNine from "@/assets/images/avatars/avatar-nine.png";
+import AvatarTen from "@/assets/images/avatars/avatar-ten.png";
+
+export interface AvatarConfig {
+  color: string;
+  avatar: ImageSourcePropType;
+}
+
+export const avatarWithColors: AvatarConfig[] = [
   {
     color: "#FFC73F",
-    avatar: require("@/assets/images/avatars/avatar-one.png"),
+    avatar: AvatarOne,
   },
   {
     color: "#6EC9FF",
-    avatar: require("@/assets/images/avatars/avatar-three.png"),
+    avatar: AvatarThree,
   },
   {
     color: "#58E97B",
-    avatar: require("@/assets/images/avatars/avatar-two.png"),
+    avatar: AvatarTwo,
   },
   {
     color: "#AE7EFE",
-    avatar: require("@/assets/images/avatars/avatar-four.png"),
+    avatar: AvatarFour,
   },
   {
     color: "#ff9800",
-    avatar: require("@/assets/images/avatars/avatar-five.png"),
+    avatar: AvatarFive,
   },
   {
     color: "#ff5757",
-    avatar: require("@/assets/images/avatars/avatar-six.png"),
+    avatar: AvatarSix,
   },
   {
     color: "#d2691e",
-    avatar: require("@/assets/images/avatars/avatar-seven.png"),
+    avatar: AvatarSeven,
   },
   {
     color: "#5271ff",
-    avatar: require("@/assets/images/avatars/avatar-eight.png"),
+    avatar: AvatarEight,
   },
   {
     color: "#00bf63",
-    avatar: require("@/assets/images/avatars/avatar-nine.png"),
+    avatar: AvatarNine,
   },
   {
     color: "#ff3131",
-    avatar: require("@/assets/images/avatars/avatar-ten.png"),
+    avatar: AvatarTen,
   },
 ];

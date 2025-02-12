@@ -4,34 +4,24 @@ import { HeaderCreateParticipant } from "./components";
 import { CustomButton } from "@/components/ui";
 import { ScrollView, View } from "react-native";
 import { styles } from "./styles";
-import { useEffect, useState } from "react";
-import { getRandomAvatarAndColor } from "@/utils/randomUtils";
+import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useBillContext } from "@/context";
+import { parseFormattedNumber } from "@/utils/formatNumbers";
+import { getAvatarWithColor } from "@/utils/randomUtils";
+
 export const CreateParticipant = () => {
   const { addParticipant, bills } = useBillContext();
   const navigation = useNavigation();
-  const billId = "124-s";
+  const billId = "124ss";
   const [display, setDisplay] = useState<string>("");
-  const [avatar, setAvatar] = useState(getRandomAvatarAndColor());
   const [name, setName] = useState("");
   const currentBill = bills.find((bill) => bill.id === billId);
-  const usedAvatars = currentBill?.participants.map(
-    (participant) => participant.avatar,
-  );
-
-  useEffect(() => {
-    let randomAvatar = getRandomAvatarAndColor();
-    while (usedAvatars?.includes(randomAvatar.avatar)) {
-      randomAvatar = getRandomAvatarAndColor();
-    }
-    setAvatar(randomAvatar);
-  }, [usedAvatars]);
-
+  const participantCount = currentBill?.participants?.length ?? 0;
+  const { avatar, color } = getAvatarWithColor(participantCount);
   const handleSave = () => {
-    const payment = parseFloat(display) || 0;
-
-    addParticipant("124-s", name, payment, avatar.avatar, avatar.color);
+    const payment = parseFormattedNumber(display);
+    addParticipant("124ss", name, payment, avatar, color);
     navigation.goBack();
   };
   return (

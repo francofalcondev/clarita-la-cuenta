@@ -6,7 +6,7 @@ export type BillProviderProps = PropsWithChildren<object>;
 export interface Bill {
   id: string;
   title: string;
-  amount?: number;
+  amount: number;
   createdAt: Date;
   participants: Participant[];
 }

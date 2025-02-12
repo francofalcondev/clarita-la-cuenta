@@ -4,6 +4,7 @@ import { ProgressBar } from "@/components";
 import { Colors } from "@/constants/Colors";
 import EditIcon from "@/assets/icons/EditIcon";
 import { FriendItemProps } from "./types";
+import { formatNumber } from "@/utils/formatNumbers";
 
 export const FriendItem = ({ participant }: FriendItemProps) => {
   return (
@@ -14,7 +15,9 @@ export const FriendItem = ({ participant }: FriendItemProps) => {
       </View>
 
       <View style={styles.paymentContainer}>
-        <Text style={styles.textPayment}>{participant.payment}</Text>
+        <Text
+          style={styles.textPayment}
+        >{`${formatNumber(participant.payment)} ARS`}</Text>
         <TouchableOpacity>
           <EditIcon width={17} height={16} color={Colors.yellowGreen} />
         </TouchableOpacity>

@@ -4,13 +4,19 @@ import { styles } from "./styles";
 
 export const AvatarGroup = ({ avatarUrls }: AvatarGroupProps) => {
   const avatarSize = 43;
+  const defaultAvatar = require("@/assets/images/avatars/avatar-default.png");
+
+  const avatarsToShow = [
+    ...avatarUrls.slice(0, 4),
+    ...Array(Math.max(0, 4 - avatarUrls.length)).fill(null),
+  ];
 
   return (
     <View style={styles.avatarWrapper}>
-      {avatarUrls.slice(0, 4).map((url, index) => (
+      {avatarsToShow.map((url, index) => (
         <Image
           key={index}
-          source={{ uri: url }}
+          source={url ? { uri: url } : defaultAvatar}
           style={[
             styles.avatar,
             {
