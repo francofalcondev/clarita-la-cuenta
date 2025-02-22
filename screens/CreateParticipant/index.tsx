@@ -11,18 +11,19 @@ import { parseFormattedNumber } from "@/utils/formatNumbers";
 import { getAvatarWithColor } from "@/utils/randomUtils";
 
 export const CreateParticipant = () => {
-  const { addParticipant, bills } = useBillContext();
-  const navigation = useNavigation();
-  const billId = "124ss";
+  const { addParticipant, bill } = useBillContext();
   const [display, setDisplay] = useState<string>("");
   const [name, setName] = useState("");
-  const currentBill = bills.find((bill) => bill.id === billId);
-  const participantCount = currentBill?.participants?.length ?? 0;
-  const { avatar, color } = getAvatarWithColor(participantCount);
+  const participantCount = bill?.participants.length ?? 0;
+  const { avatar } = getAvatarWithColor(participantCount);
+  const navigation = useNavigation();
+
   const handleSave = () => {
     const payment = parseFormattedNumber(display);
-    addParticipant("124ss", name, payment, avatar, color);
-    navigation.goBack();
+    if (bill) {
+      addParticipant(name, payment);
+      navigation.goBack();
+    }
   };
   return (
     <ScreenWrapper bg={Colors.white}>
@@ -38,7 +39,7 @@ export const CreateParticipant = () => {
           <CustomButton
             theme="dark"
             title="GUARDAR CAMBIOS"
-            disabled={!display}
+            disabled={!display || !name.trim()}
             onPress={handleSave}
           />
         </View>

@@ -20,17 +20,12 @@ export interface Participant {
 }
 
 export interface BillContextType {
-  bills: Bill[];
+  bill: Bill;
   addBill: (title: string, amount?: number) => void;
-  addParticipant: (
-    billId: string,
-    name: string,
-    payment: number,
-    avatar: ImageSourcePropType,
-    color: string,
-  ) => void;
+  addParticipant: (name: string, payment: number) => void;
+  generateBillText: (bill: Bill) => string;
 }
 
 export interface BillContextInitialState {
-  bills: Bill[];
+  bill: Bill;
 }

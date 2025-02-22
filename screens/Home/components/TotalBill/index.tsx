@@ -8,16 +8,15 @@ import { es } from "date-fns/locale";
 import { formatNumber } from "@/utils/formatNumbers";
 
 export const TotalBill = () => {
-  const { bills } = useBillContext();
-  const bill = bills[0];
+  const { bill } = useBillContext();
 
-  const avatarUrls: any[] = bill.participants.map((participant) =>
-    getAvatarUrl(participant.avatar),
-  );
+  const avatarUrls: (string | ImageURISource | ImageURISource[])[] =
+    bill.participants.map((participant) => getAvatarUrl(participant.avatar));
+
   return (
     <View style={styles.totalBillCardContainer}>
       <View style={styles.headerContainer}>
-        <Text style={styles.headerTitle}>🍔{bill.title}</Text>
+        <Text style={styles.headerTitle}>🍔{bill?.title}</Text>
         <Text>
           {format(bill.createdAt, "dd 'de' MMMM yyyy, HH:mm", { locale: es })}
         </Text>

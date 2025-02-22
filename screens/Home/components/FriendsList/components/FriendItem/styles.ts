@@ -12,6 +12,14 @@ export const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "space-between",
   },
+  shadow: {
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+
   avatarContainer: {
     flexDirection: "row",
     gap: 10,

@@ -1,75 +1,111 @@
 import { createContext, useContext, useState } from "react";
 import { Bill, BillContextType, BillProviderProps, Participant } from "./types";
 import { parsedDate } from "@/utils/dateHelpers";
-import uuid from "react-native-uuid";
-
 import { avatarWithColors } from "@/constants/avatarWithColors";
+import uuid from "react-native-uuid";
+import { formatNumber } from "@/utils/formatNumbers";
+
+const defaultBill: Bill = {
+  id: uuid.v4(),
+  title: "Burguer Queen",
+  createdAt: parsedDate,
+  amount: 0,
+  participants: [],
+};
 
 const initialState = {
-  bills: [],
+  bill: defaultBill,
   addBill: () => {},
+  generateBillText: () => "",
   addParticipant: () => {},
 };
 const BillContext = createContext<BillContextType>(initialState);
 
-const billMock: Bill[] = [
-  {
-    id: "124ss",
-    title: "Burguer Queen",
-    createdAt: parsedDate,
-    amount: 15000,
-    participants: [],
-  },
-];
-
 export const BillProvider = ({ children }: BillProviderProps) => {
-  const [bills, setBills] = useState<Bill[]>(billMock);
+  const [bill, setBill] = useState<Bill>(defaultBill);
 
+  //Create BIll
   const addBill = (title: string, amount?: number) => {
     const newBill: Bill = {
       id: uuid.v4(),
       title: title,
-      amount: amount ? amount : 0,
+      amount: amount || 0,
       createdAt: parsedDate,
       participants: [],
     };
 
-    setBills([...bills, newBill]);
+    setBill(newBill);
   };
 
-  const addParticipant = (billId: string, name: string, payment: number) => {
-    setBills((prevBills) =>
-      prevBills.map((bill) => {
-        if (bill.id === billId) {
-          // Obtener el índice del próximo avatar
-          const index = bill.participants.length;
+  //Create Participant
 
-          // Verificar que el índice esté dentro del rango del array
-          const avatarConfig =
-            avatarWithColors[index % avatarWithColors.length];
+  const addParticipant = (name: string, payment: number) => {
+    if (!bill) {
+      console.error("No active bill");
+      return;
+    }
 
-          // Crear el nuevo participante
-          const newParticipant = {
-            id: uuid.v4(),
-            name,
-            avatar: avatarConfig.avatar,
-            color: avatarConfig.color,
-            payment,
-          };
+    const index = bill.participants.length;
+    const avatarConfig = avatarWithColors[index % avatarWithColors.length];
 
-          // Retornar la factura actualizada con el nuevo participante
-          return {
-            ...bill,
-            participants: [...bill.participants, newParticipant],
-          };
+    const newParticipant: Participant = {
+      id: uuid.v4(),
+      name,
+      avatar: avatarConfig.avatar,
+      color: avatarConfig.color,
+      payment,
+    };
+
+    const updateBill: Bill = {
+      ...bill,
+      participants: [...bill.participants, newParticipant],
+      amount: bill.amount + payment,
+    };
+
+    setBill(updateBill);
+  };
+
+  const generateBillText = (bill: Bill) => {
+    const totalAmount = bill.amount;
+    const participants = bill.participants;
+    const average = totalAmount / participants.length;
+
+    let text = `💵 Cuenta total: ${formatNumber(totalAmount)} ARS\n`;
+    text += `👥 Total de participantes: ${participants.length}\n`;
+    text += `💰 Monto por persona: ${formatNumber(average)} ARS\n\n`;
+
+    text += "👤 PARTICIPANTES:\n";
+    participants.forEach((participant) => {
+      text += `- ${participant.name.toUpperCase()} aportó ${formatNumber(participant.payment)} ARS\n`;
+    });
+
+    text += "\n🎯 RESULTADOS:\n";
+    const differences = participants.map((participant) => ({
+      name: participant.name,
+      difference: participant.payment - average,
+    }));
+
+    const debtors = differences.filter((p) => p.difference < 0);
+    const creditors = differences.filter((p) => p.difference > 0);
+    debtors.forEach((debtor) => {
+      creditors.forEach((creditor) => {
+        if (creditor.difference > 0) {
+          const amount = Math.min(-debtor.difference, creditor.difference);
+          text += `- ${debtor.name.toUpperCase()} paga ${formatNumber(amount)} ARS a ${creditor.name.toUpperCase()}\n`;
+
+          debtor.difference += amount;
+          creditor.difference -= amount;
         }
-        return bill;
-      }),
-    );
+      });
+    });
+
+    return text;
   };
 
   return (
-    <BillContext.Provider value={{ bills, addBill, addParticipant }}>
+    <BillContext.Provider
+      value={{ bill, addBill, addParticipant, generateBillText }}
+    >
       {children}
     </BillContext.Provider>
   );

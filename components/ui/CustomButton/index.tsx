@@ -6,6 +6,7 @@ export const CustomButton = ({
   title,
   theme,
   style,
+  disabled,
   ...rest
 }: CustomButtonProps) => {
   const themeColors = {
@@ -27,6 +28,7 @@ export const CustomButton = ({
 
   return (
     <TouchableOpacity
+      disabled={disabled}
       {...rest}
       style={[
         {
@@ -43,6 +45,7 @@ export const CustomButton = ({
           elevation: 5,
           borderColor: theme === "light" ? "rgba(255, 204, 0, 0.3)" : "#444444",
           borderWidth: 1,
+          opacity: disabled ? 0.5 : 1,
         },
         style,
       ]}

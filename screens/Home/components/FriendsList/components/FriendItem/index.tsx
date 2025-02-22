@@ -6,9 +6,11 @@ import EditIcon from "@/assets/icons/EditIcon";
 import { FriendItemProps } from "./types";
 import { formatNumber } from "@/utils/formatNumbers";
 
-export const FriendItem = ({ participant }: FriendItemProps) => {
+export const FriendItem = ({ participant, totalAmount }: FriendItemProps) => {
+  const progress =
+    totalAmount > 0 ? Math.round((participant.payment / totalAmount) * 100) : 0;
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, styles.shadow]}>
       <View style={styles.avatarContainer}>
         <Image style={styles.avatar} source={participant.avatar} />
         <Text style={styles.avatarText}>{participant.name}</Text>
@@ -23,7 +25,7 @@ export const FriendItem = ({ participant }: FriendItemProps) => {
         </TouchableOpacity>
       </View>
       <View style={styles.progressContainer}>
-        <ProgressBar progress={60} color={participant.color} />
+        <ProgressBar progress={progress} color={participant.color} />
       </View>
     </View>
   );

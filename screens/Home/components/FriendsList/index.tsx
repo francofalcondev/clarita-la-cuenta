@@ -13,14 +13,16 @@ export const FriendsList = () => {
     navigation.navigate("CreateParticipant");
   };
 
-  const { bills } = useBillContext();
-  const participants = bills.length > 0 ? bills[0].participants : [];
+  const { bill } = useBillContext();
+  const participants = bill.participants;
   return (
     <View style={styles.friendsContainer}>
       <FlatList
         data={participants}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <FriendItem participant={item} />}
+        renderItem={({ item }) => (
+          <FriendItem participant={item} totalAmount={bill.amount} />
+        )}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
       <TouchableOpacity style={styles.AddButtonContainer} onPress={handleStart}>

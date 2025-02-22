@@ -5,7 +5,7 @@
 
 export const Colors = {
   royalBlue: "#1D2333",
-  paleSilver: "#f5f7f9",
+  paleSilver: "#F4F6F7",
   white: "#FFFFFF",
   yellowGreen: "#57a639",
   grayLight: "F9F9F9",
