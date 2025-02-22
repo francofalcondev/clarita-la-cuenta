@@ -10,17 +10,27 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
   },
 
+  containerListFooter: {
+    height: 20,
+  },
+
+  containerStyle: {
+    paddingBottom: 10,
+  },
+
   separator: {
     height: 1,
     marginVertical: 13,
   },
 
   AddButtonContainer: {
-    flex: 1,
     gap: 10,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    alignSelf: "center",
+    marginTop: 10,
+    marginBottom: 12,
   },
   AddButtonText: {
     fontWeight: "bold",

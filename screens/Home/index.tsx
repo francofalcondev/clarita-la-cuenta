@@ -1,6 +1,6 @@
 import { ScreenWrapper } from "@/components";
 import { Colors } from "@/constants/Colors";
-import { TotalBill, FriendsList, BillSummary } from "./components";
+import { TotalBill, FriendsList, BillSummary, HeaderTab } from "./components";
 import { CustomButton } from "@/components/ui";
 import { View } from "react-native";
 import { styles } from "./styles";
@@ -13,6 +13,10 @@ export const Home = () => {
     <ScreenWrapper bg={Colors.white}>
       <TotalBill />
       <FriendsList />
+      <BillSummary
+        showModalBillSummary={showModalBillSummary}
+        setShowModalBillSummary={setShowModalBillSummary}
+      />
       <View style={styles.footerContainer}>
         <CustomButton
           theme="dark"
@@ -20,10 +24,6 @@ export const Home = () => {
           onPress={() => setShowModalBillSummary(true)}
         />
       </View>
-      <BillSummary
-        showModalBillSummary={showModalBillSummary}
-        setShowModalBillSummary={setShowModalBillSummary}
-      />
     </ScreenWrapper>
   );
 };

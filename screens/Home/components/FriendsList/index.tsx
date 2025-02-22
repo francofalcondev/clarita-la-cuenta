@@ -24,6 +24,8 @@ export const FriendsList = () => {
           <FriendItem participant={item} totalAmount={bill.amount} />
         )}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
+        contentContainerStyle={styles.containerStyle}
+        ListFooterComponent={<View style={styles.containerListFooter} />}
       />
       <TouchableOpacity style={styles.AddButtonContainer} onPress={handleStart}>
         <AddIcon color={Colors.royalBlue} />
