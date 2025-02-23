@@ -29,7 +29,7 @@ export const BillSummary = ({
     >
       <View style={styles.overlay}>
         <View style={styles.modalContainer}>
-          <Text style={styles.modalText}>Resumen de la cuenta</Text>
+          <Text style={styles.modalText}>✨ Resumen de la cuenta ✨</Text>
           <Text>{billText}</Text>
           <View style={styles.containerButtons}>
             <TouchableOpacity

@@ -64,7 +64,6 @@ export const BillProvider = ({ children }: BillProviderProps) => {
 
     setBill(updateBill);
   };
-
   const generateBillText = (bill: Bill) => {
     const totalAmount = bill.amount;
     const participants = bill.participants;
@@ -80,17 +79,21 @@ export const BillProvider = ({ children }: BillProviderProps) => {
     });
 
     text += "\n🎯 RESULTADOS:\n";
-    const differences = participants.map((participant) => ({
+    let differences = participants.map((participant) => ({
       name: participant.name,
-      difference: participant.payment - average,
+      difference: Math.round(participant.payment - average),
     }));
 
-    const debtors = differences.filter((p) => p.difference < 0);
-    const creditors = differences.filter((p) => p.difference > 0);
+    let debtors = differences.filter((p) => p.difference < 0);
+    let creditors = differences.filter((p) => p.difference > 0);
+
     debtors.forEach((debtor) => {
       creditors.forEach((creditor) => {
-        if (creditor.difference > 0) {
-          const amount = Math.min(-debtor.difference, creditor.difference);
+        let amount = Math.min(-debtor.difference, creditor.difference);
+        amount = Math.round(amount);
+
+        if (amount > 0) {
+          // 🔹 Se ignoran montos 0
           text += `- ${debtor.name.toUpperCase()} paga ${formatNumber(amount)} ARS a ${creditor.name.toUpperCase()}\n`;
 
           debtor.difference += amount;
