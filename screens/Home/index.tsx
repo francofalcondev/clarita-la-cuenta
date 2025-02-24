@@ -11,18 +11,24 @@ export const Home = () => {
     useState<boolean>(false);
   return (
     <ScreenWrapper bg={Colors.white}>
-      <TotalBill />
-      <FriendsList />
-      <BillSummary
-        showModalBillSummary={showModalBillSummary}
-        setShowModalBillSummary={setShowModalBillSummary}
-      />
-      <View style={styles.footerContainer}>
-        <CustomButton
-          theme="dark"
-          title="CALCULAR CUENTA"
-          onPress={() => setShowModalBillSummary(true)}
-        />
+      <View style={styles.container}>
+        <View style={styles.content}>
+          <HeaderTab />
+          <TotalBill />
+          <FriendsList />
+          <BillSummary
+            showModalBillSummary={showModalBillSummary}
+            setShowModalBillSummary={setShowModalBillSummary}
+          />
+        </View>
+
+        <View style={styles.footerContainer}>
+          <CustomButton
+            theme="dark"
+            title="CALCULAR CUENTA"
+            onPress={() => setShowModalBillSummary(true)}
+          />
+        </View>
       </View>
     </ScreenWrapper>
   );

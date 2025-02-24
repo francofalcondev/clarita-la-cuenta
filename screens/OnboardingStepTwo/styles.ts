@@ -1,6 +1,7 @@
-import { Colors } from "@/constants/Colors";
-import { hp, wp } from "@/utils/common";
 import { StyleSheet } from "react-native";
+import { hp, wp } from "@/utils/common";
+import { Colors } from "@/constants/Colors";
+Colors;
 
 export const styles = StyleSheet.create({
   container: {
@@ -30,12 +31,13 @@ export const styles = StyleSheet.create({
   },
   title: {
     color: Colors.royalBlue,
-    fontSize: hp(2.6),
+    fontSize: hp(2.0),
+    fontWeight: "700",
     textAlign: "center",
   },
 
   textInfo: {
-    fontSize: hp(1.7),
+    fontSize: hp(1.5),
     textAlign: "center",
     color: Colors.grayText,
   },

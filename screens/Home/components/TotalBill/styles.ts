@@ -16,8 +16,8 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    borderBottomColor: Colors.grayLight,
-    borderBottomWidth: 0.6,
+    borderBottomColor: Colors.softSlate,
+    borderBottomWidth: 2,
     paddingVertical: 10,
   },
   headerTitle: {

@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   friendsContainer: {
     backgroundColor: Colors.paleSilver,
     width: "100%",
-    height: "72%",
+    height: "74%",
     paddingHorizontal: 20,
     paddingVertical: 10,
   },

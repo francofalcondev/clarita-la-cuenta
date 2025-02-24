@@ -1,5 +1,11 @@
 import { createContext, useContext, useState } from "react";
-import { Bill, BillContextType, BillProviderProps, Participant } from "./types";
+import {
+  Bill,
+  BillContextType,
+  BillProviderProps,
+  EventOption,
+  Participant,
+} from "./types";
 import { parsedDate } from "@/utils/dateHelpers";
 import { avatarWithColors } from "@/constants/avatarWithColors";
 import uuid from "react-native-uuid";
@@ -7,7 +13,7 @@ import { formatNumber } from "@/utils/formatNumbers";
 
 const defaultBill: Bill = {
   id: uuid.v4(),
-  title: "Burguer Queen",
+  title: { label: "sdds", emoji: "🌵" },
   createdAt: parsedDate,
   amount: 0,
   participants: [],
@@ -25,7 +31,7 @@ export const BillProvider = ({ children }: BillProviderProps) => {
   const [bill, setBill] = useState<Bill>(defaultBill);
 
   //Create BIll
-  const addBill = (title: string, amount?: number) => {
+  const addBill = (title: EventOption, amount?: number) => {
     const newBill: Bill = {
       id: uuid.v4(),
       title: title,
