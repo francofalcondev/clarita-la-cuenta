@@ -1,5 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { RootStackParamList } from "./types";
+
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   Onboarding,
@@ -7,6 +8,7 @@ import {
   CreateParticipant,
   OnboardingStepTwo,
 } from "@/screens";
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const NavigationWrapper = () => {

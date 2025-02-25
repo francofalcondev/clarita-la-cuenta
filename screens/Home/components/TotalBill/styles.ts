@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   headerTitle: {
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: 800,
   },
   footerContainer: {

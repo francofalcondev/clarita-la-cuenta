@@ -1,18 +1,12 @@
 {
-  "plugins": [
-    [
-      
-      "expo-font",
-      {
-        "fonts":  [
-                    "./assets/fonts/open-sans-regular.ttf",
-                    "./assets/fonts/open-sans-bold.ttf"
-                  ]
-      }
+  "expo": {
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/open-sans-bold"]
+        }
+      ]
     ]
-    
-  ]
-  
-  
+  }
 }
-

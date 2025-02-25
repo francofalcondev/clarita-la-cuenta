@@ -1,7 +1,7 @@
 import { registerRootComponent } from "expo";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationWrapper } from "@/navigation";
-import { BillProvider } from "./context";
+import { BillProvider, FontsProvider } from "./context";
 import ErrorBoundary from "react-native-error-boundary";
 function App() {
   return (
@@ -12,9 +12,11 @@ function App() {
       }}
     >
       <SafeAreaProvider>
-        <BillProvider>
-          <NavigationWrapper />
-        </BillProvider>
+        <FontsProvider>
+          <BillProvider>
+            <NavigationWrapper />
+          </BillProvider>
+        </FontsProvider>
       </SafeAreaProvider>
     </ErrorBoundary>
   );

@@ -11,6 +11,7 @@ export const Colors = {
   grayLight: "F9F9F9",
   grayText: "#84868A",
   yellowAvatar: "#FFC73F",
+  yellowLight: "#FFF3D8",
   blackText: "#00000",
   softSlate: "#e1e5e9",
 };

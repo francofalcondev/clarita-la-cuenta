@@ -1,5 +1,4 @@
 import { Colors } from "@/constants/Colors";
-import { hp, wp } from "@/utils/common";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -13,11 +12,13 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  scrollContent: {
+    flexGrow: 1,
+    paddingBottom: 5,
+  },
 
   content: {
-    position: "absolute",
-    flex: 1,
-    bottom: 0,
+    flexGrow: 1,
     top: "60%",
     width: "100%",
     backgroundColor: Colors.white,
@@ -25,18 +26,48 @@ export const styles = StyleSheet.create({
   },
 
   buttonContainer: {
-    flex: 1,
     justifyContent: "flex-end",
+    paddingHorizontal: 14,
+    backgroundColor: Colors.white,
   },
   title: {
     color: Colors.royalBlue,
-    fontSize: hp(2.6),
+    fontSize: 25,
     textAlign: "center",
+    marginBottom: 20,
+    fontFamily: "open-sans-regular",
   },
-
+  iconContainer: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: Colors.yellowLight,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   textInfo: {
-    fontSize: hp(1.7),
+    fontSize: 15,
     textAlign: "center",
     color: Colors.grayText,
+  },
+  benefitsContainer: {
+    marginTop: 40,
+    width: "100%",
+    alignItems: "center",
+  },
+  benefitItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 12,
+    width: "100%",
+    paddingHorizontal: 10,
+  },
+  benefitText: {
+    marginLeft: 10,
+    fontSize: 15,
+    color: Colors.grayText,
+    flexShrink: 1,
+    textAlign: "left",
+    fontWeight: "500",
   },
 });
