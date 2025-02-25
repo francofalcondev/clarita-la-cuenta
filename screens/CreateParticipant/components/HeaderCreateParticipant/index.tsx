@@ -12,7 +12,7 @@ export const HeaderCreateParticipant = React.memo(
     return (
       <View style={styles.container}>
         <View style={styles.headerInfo}>
-          <Text>Agregar Participante</Text>
+          <Text style={styles.smallText}>Agregar Participante</Text>
           <TouchableOpacity>
             <EquisBoxIcon
               color={Colors.grayText}

@@ -10,14 +10,13 @@ export const styles = StyleSheet.create({
   },
   container: {
     paddingHorizontal: 14,
-
     flexDirection: "row",
     alignItems: "center",
   },
 
   textContainer: {
     flex: 1,
-    alignItems: "center",
+    alignItems: "flex-end",
   },
   text: {
     fontWeight: "700",

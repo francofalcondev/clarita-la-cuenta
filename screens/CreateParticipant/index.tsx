@@ -27,23 +27,31 @@ export const CreateParticipant = () => {
   };
   return (
     <ScreenWrapper bg={Colors.white}>
-      <ScrollView keyboardShouldPersistTaps="handled">
-        <HeaderCreateParticipant
-          display={display}
-          name={name}
-          onChangeName={setName}
-          avatar={avatar}
-        />
-        <NumericPad onChange={setDisplay} value={display} />
-        <View style={styles.buttonContainer}>
-          <CustomButton
-            theme="dark"
-            title="GUARDAR CAMBIOS"
-            disabled={!display || !name.trim()}
-            onPress={handleSave}
+      <View style={styles.container}>
+        <ScrollView
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: "space-around",
+          }}
+        >
+          <HeaderCreateParticipant
+            display={display}
+            name={name}
+            onChangeName={setName}
+            avatar={avatar}
           />
-        </View>
-      </ScrollView>
+          <NumericPad onChange={setDisplay} value={display} />
+          <View style={styles.buttonContainer}>
+            <CustomButton
+              theme="dark"
+              title="GUARDAR CAMBIOS"
+              disabled={!display || !name.trim()}
+              onPress={handleSave}
+            />
+          </View>
+        </ScrollView>
+      </View>
     </ScreenWrapper>
   );
 };

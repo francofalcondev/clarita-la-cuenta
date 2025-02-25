@@ -17,8 +17,7 @@ export const TotalBill = () => {
     <View style={styles.totalBillCardContainer}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerTitle}>
-          {bill?.title.emoji}
-          {bill?.title.label}
+          {`${bill?.title.emoji}  ${bill?.title.label}`}
         </Text>
         <Text>
           {format(bill.createdAt, "dd 'de' MMMM yyyy, HH:mm", { locale: es })}

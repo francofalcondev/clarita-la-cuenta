@@ -7,6 +7,9 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
 
+  smallText: {
+    fontSize: 16,
+  },
   headerInfo: {
     flex: 1,
     flexDirection: "row",
@@ -39,8 +42,8 @@ export const styles = StyleSheet.create({
     borderWidth: 0,
   },
   avatar: {
-    width: 85,
-    height: 85,
+    width: 90,
+    height: 90,
     borderRadius: 5,
     marginBottom: 15,
   },
