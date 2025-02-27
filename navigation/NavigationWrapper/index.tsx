@@ -7,6 +7,7 @@ import {
   Home,
   CreateParticipant,
   OnboardingStepTwo,
+  ParticipantForm,
 } from "@/screens";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -23,6 +24,11 @@ export const NavigationWrapper = () => {
         <Stack.Screen
           name="OnboardingStepTwo"
           component={OnboardingStepTwo}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ParticipantForm"
+          component={ParticipantForm}
           options={{ headerShown: false }}
         />
         <Stack.Screen

@@ -48,18 +48,11 @@ export const Onboarding = () => {
         />
 
         <View style={styles.content}>
-          <Text
-            style={{
-              fontFamily: "poppins-bold",
-              fontSize: 23,
-              textAlign: "center",
-            }}
-          >
-            ¡Bienvenido a Clarita la cuenta! ✨
-          </Text>
+          <Text style={styles.title}>¡Bienvenido!✨</Text>
           <Text style={styles.textInfo}>
-            Divide los gastos de tus reuniones con amigos de manera simple y
-            clara. Sin complicaciones, solo diversión. 🎉
+            <Text style={styles.spanTitle}>Clarita la Cuenta </Text>
+            te ayuda a dividir los gastos de tus reuniones con amigos de manera
+            simple y clara.
           </Text>
 
           <View style={styles.benefitsContainer}>

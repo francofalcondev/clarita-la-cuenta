@@ -31,13 +31,13 @@ export const styles = StyleSheet.create({
   },
   title: {
     color: Colors.royalBlue,
-    fontSize: hp(2.0),
-    fontWeight: "700",
+    fontFamily: "poppins-bold",
+    fontSize: 23,
     textAlign: "center",
   },
 
   textInfo: {
-    fontSize: hp(1.5),
+    fontSize: 14,
     textAlign: "center",
     color: Colors.grayText,
   },

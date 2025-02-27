@@ -70,6 +70,7 @@ export const BillProvider = ({ children }: BillProviderProps) => {
 
     setBill(updateBill);
   };
+
   const generateBillText = (bill: Bill) => {
     const totalAmount = bill.amount;
     const participants = bill.participants;
@@ -99,7 +100,6 @@ export const BillProvider = ({ children }: BillProviderProps) => {
         amount = Math.round(amount);
 
         if (amount > 0) {
-          // 🔹 Se ignoran montos 0
           text += `- ${debtor.name.toUpperCase()} paga ${formatNumber(amount)} ARS a ${creditor.name.toUpperCase()}\n`;
 
           debtor.difference += amount;
@@ -107,6 +107,31 @@ export const BillProvider = ({ children }: BillProviderProps) => {
         }
       });
     });
+
+    //Edit Participant
+    const updateParticipant = (id: string, name: string, payment: number) => {
+      if (!bill) {
+        console.error("No active Bill");
+        return;
+      }
+
+      const updatedParticipants = bill.participants.map((participant) =>
+        participant.id === id ? { ...participant, name, payment } : participant,
+      );
+
+      const newTotalAmount = updatedParticipants.reduce(
+        (sum, p) => sum + p.payment,
+        0,
+      );
+
+      const updatedBill: Bill = {
+        ...bill,
+        participants: updatedParticipants,
+        amount: newTotalAmount,
+      };
+
+      setBill(updatedBill);
+    };
 
     return text;
   };

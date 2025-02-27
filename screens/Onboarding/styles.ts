@@ -35,8 +35,14 @@ export const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: "center",
     marginBottom: 20,
-    fontFamily: "open-sans-regular",
+    fontFamily: "poppins-bold",
   },
+
+  spanTitle: {
+    color: Colors.yellowAvatar,
+    fontWeight: "bold",
+  },
+
   iconContainer: {
     width: 50,
     height: 50,
@@ -63,8 +69,9 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   benefitText: {
+    fontFamily: "poppins-regular",
     marginLeft: 10,
-    fontSize: 15,
+    fontSize: 13,
     color: Colors.grayText,
     flexShrink: 1,
     textAlign: "left",

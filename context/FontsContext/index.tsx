@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import * as Font from "expo-font";
 import { FontsContextProps } from "./types";
 import * as SplashScreen from "expo-splash-screen";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -17,6 +17,7 @@ export const FontsProvider = ({ children }: FontsContextProps) => {
         "open-sans-regular": require("@/assets/fonts/open-sans-regular.ttf"),
         "open-sans-bold": require("@/assets/fonts/open-sans-bold.ttf"),
         "poppins-bold": require("@/assets/fonts/Poppins-Bold.ttf"),
+        "poppins-regular": require("@/assets/fonts/Poppins-Medium.ttf"),
       });
       setFontsLoaded(true);
       SplashScreen.hideAsync();
