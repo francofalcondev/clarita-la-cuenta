@@ -24,6 +24,7 @@ const initialState = {
   addBill: () => {},
   generateBillText: () => "",
   addParticipant: () => {},
+  updateParticipant: () => {},
 };
 const BillContext = createContext<BillContextType>(initialState);
 
@@ -108,37 +109,43 @@ export const BillProvider = ({ children }: BillProviderProps) => {
       });
     });
 
-    //Edit Participant
-    const updateParticipant = (id: string, name: string, payment: number) => {
-      if (!bill) {
-        console.error("No active Bill");
-        return;
-      }
+    return text;
+  };
 
-      const updatedParticipants = bill.participants.map((participant) =>
-        participant.id === id ? { ...participant, name, payment } : participant,
-      );
+  //Edit Participant
+  const updateParticipant = (id: string, name: string, payment: number) => {
+    if (!bill) {
+      console.error("No active Bill");
+      return;
+    }
 
-      const newTotalAmount = updatedParticipants.reduce(
-        (sum, p) => sum + p.payment,
-        0,
-      );
+    const updatedParticipants = bill.participants.map((participant) =>
+      participant.id === id ? { ...participant, name, payment } : participant,
+    );
 
-      const updatedBill: Bill = {
-        ...bill,
-        participants: updatedParticipants,
-        amount: newTotalAmount,
-      };
+    const newTotalAmount = updatedParticipants.reduce(
+      (sum, p) => sum + p.payment,
+      0,
+    );
 
-      setBill(updatedBill);
+    const updatedBill: Bill = {
+      ...bill,
+      participants: updatedParticipants,
+      amount: newTotalAmount,
     };
 
-    return text;
+    setBill(updatedBill);
   };
 
   return (
     <BillContext.Provider
-      value={{ bill, addBill, addParticipant, generateBillText }}
+      value={{
+        bill,
+        addBill,
+        addParticipant,
+        generateBillText,
+        updateParticipant,
+      }}
     >
       {children}
     </BillContext.Provider>

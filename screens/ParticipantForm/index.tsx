@@ -1,6 +1,6 @@
 import { NumericPad, ScreenWrapper } from "@/components";
 import { Colors } from "@/constants/Colors";
-import { ParticipantFormProps, ParticipantFormRouteProp } from "./types";
+import { ParticipantFormRouteProp } from "./types";
 import { useState } from "react";
 import { getAvatarWithColor } from "@/utils/randomUtils";
 import { useBillContext } from "@/context";
@@ -13,9 +13,10 @@ import { HeaderCreateParticipant } from "./components";
 
 export const ParticipantForm = () => {
   const route = useRoute<ParticipantFormRouteProp>();
-  const { initialValues, onSubmit } = route.params;
+  const { initialValues } = route.params;
+  const { bill, addParticipant, updateParticipant } = useBillContext();
   const isEditing = !!initialValues;
-  const { bill } = useBillContext();
+  const navigation = useNavigation();
   const [display, setDisplay] = useState<string>(initialValues?.payment ?? "");
   const [name, setName] = useState(initialValues?.name ?? "");
   const index = isEditing
@@ -26,11 +27,13 @@ export const ParticipantForm = () => {
     ? initialValues.avatar
     : getAvatarWithColor(index).avatar;
 
-  const navigation = useNavigation();
-
   const handleSave = () => {
     const payment = parseFormattedNumber(display);
-    onSubmit(name, payment);
+    if (initialValues?.id) {
+      updateParticipant(initialValues.id, name, payment);
+    } else {
+      addParticipant(name, payment);
+    }
     navigation.goBack();
   };
 
@@ -47,6 +50,7 @@ export const ParticipantForm = () => {
           <HeaderCreateParticipant
             display={display}
             name={name}
+            isEditing={isEditing}
             onChangeName={setName}
             avatar={avatar}
           />

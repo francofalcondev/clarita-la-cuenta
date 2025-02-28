@@ -12,6 +12,5 @@ export type RootStackParamList = {
       payment: string;
       avatar: ImageSourcePropType;
     };
-    onSubmit: (name: string, payment: number) => void;
   };
 };

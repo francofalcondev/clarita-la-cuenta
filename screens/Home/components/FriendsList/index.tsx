@@ -4,13 +4,16 @@ import { FriendItem } from "./components";
 import { useBillContext } from "@/context/BillContext";
 import AddIcon from "@/assets/icons/AddIcon";
 import { Colors } from "@/constants/Colors";
-import { useNavigation } from "@react-navigation/native";
-import { NavigationProps } from "./types";
-export const FriendsList = () => {
-  const navigation = useNavigation<NavigationProps>();
+import { useNavigation, NavigationProp } from "@react-navigation/native";
+import { RootStackParamList } from "@/types/rootStackParams";
 
-  const handleStart = () => {
-    navigation.navigate("CreateParticipant");
+export const FriendsList = () => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const handleNavigate = () => {
+    navigation.navigate("ParticipantForm", {
+      initialValues: undefined,
+    });
   };
 
   const { bill } = useBillContext();
@@ -27,7 +30,10 @@ export const FriendsList = () => {
         contentContainerStyle={styles.containerStyle}
         ListFooterComponent={<View style={styles.containerListFooter} />}
       />
-      <TouchableOpacity style={styles.AddButtonContainer} onPress={handleStart}>
+      <TouchableOpacity
+        style={styles.AddButtonContainer}
+        onPress={handleNavigate}
+      >
         <AddIcon color={Colors.royalBlue} />
         <Text style={styles.AddButtonText}>Agregar Participante</Text>
       </TouchableOpacity>

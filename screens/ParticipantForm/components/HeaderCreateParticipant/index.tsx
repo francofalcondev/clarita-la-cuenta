@@ -6,13 +6,21 @@ import { HeaderCreateParticipantProps } from "./types";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 export const HeaderCreateParticipant = React.memo(
-  ({ display, name, avatar, onChangeName }: HeaderCreateParticipantProps) => {
+  ({
+    display,
+    name,
+    isEditing,
+    avatar,
+    onChangeName,
+  }: HeaderCreateParticipantProps) => {
     const navigation = useNavigation();
 
     return (
       <View style={styles.container}>
         <View style={styles.headerInfo}>
-          <Text style={styles.smallText}>Agregar Participante</Text>
+          <Text style={styles.smallText}>
+            {isEditing ? "Editar participante" : "Agregar participante"}
+          </Text>
           <TouchableOpacity>
             <EquisBoxIcon
               color={Colors.grayText}

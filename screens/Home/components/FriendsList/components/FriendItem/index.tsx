@@ -15,11 +15,7 @@ export const FriendItem = ({ participant, totalAmount }: FriendItemProps) => {
     navigation.navigate("ParticipantForm", {
       initialValues: {
         ...participant,
-        payment: participant.payment.toString(), // Convertir payment a string
-      },
-      onSubmit: (name: string, payment: number) => {
-        console.log("Nombre:", name);
-        console.log("Pago:", payment);
+        payment: participant.payment.toString(),
       },
     });
   };

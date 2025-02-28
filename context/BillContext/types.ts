@@ -24,6 +24,7 @@ export interface BillContextType {
   addBill: (title: EventOption, amount?: number) => void;
   addParticipant: (name: string, payment: number) => void;
   generateBillText: (bill: Bill) => string;
+  updateParticipant: (id: string, name: string, payment: number) => void;
 }
 
 export interface BillContextInitialState {
